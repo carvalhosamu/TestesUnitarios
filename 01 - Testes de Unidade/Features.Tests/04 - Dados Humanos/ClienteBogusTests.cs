@@ -3,11 +3,11 @@
 namespace Features.Tests;
 
 [Collection(nameof(ClienteBogusCollection))]
-public class ClienteBogusTeste
+public class ClienteBogusTests
 {
     private readonly ClienteBogusFixture _clientBogusCollection;
 
-    public ClienteBogusTeste(ClienteBogusFixture clientBogusCollection)
+    public ClienteBogusTests(ClienteBogusFixture clientBogusCollection)
     {
         _clientBogusCollection = clientBogusCollection;
     }

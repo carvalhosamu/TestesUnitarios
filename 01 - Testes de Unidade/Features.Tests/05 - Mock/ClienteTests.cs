@@ -9,11 +9,11 @@ using Xunit;
 namespace Features.Tests;
 
 [Collection(nameof(ClienteBogusCollection))]
-public class ClienteTeste
+public class ClienteTests
 {
     private readonly ClienteBogusFixture _clienteTestsFixture;
 
-    public ClienteTeste(ClienteBogusFixture clienteTestsFixture)
+    public ClienteTests(ClienteBogusFixture clienteTestsFixture)
     {
         _clienteTestsFixture = clienteTestsFixture;
     }
@@ -71,8 +71,8 @@ public class ClienteTeste
         // Act
         var clientes = clienteService.ObterTodosAtivos().ToList();
 
+        // Assert
         clienteRepo.Verify(r => r.ObterTodos(), Times.Once);
-        
         Assert.True(clientes.Any());
         Assert.All(clientes, cliente => Assert.True(cliente.Ativo));
     }
