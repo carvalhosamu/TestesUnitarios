@@ -19,7 +19,7 @@ namespace Features.Tests
         }
 
         [Fact(DisplayName = "Adicionar Cliente com Sucesso")]
-        [Trait("Categoria", "Cliente Service Auto Mock Testes")]
+        [Trait("Categoria", "Cliente Service AutoMockFixture Testes")]
         public void ClienteService_Adicionar_DeveExecutarComSucesso()
         {
             // Arrange
@@ -37,7 +37,7 @@ namespace Features.Tests
         }
 
         [Fact(DisplayName = "Adicionar Cliente com Falha")]
-        [Trait("Categoria", "Cliente Service Mock Testes")]
+        [Trait("Categoria", "Cliente Service AutoMockFixture Testes")]
         public void ClienteService_Adicionar_DeveFalaharCadastroClienteInvalido()
         {
             // Arrange
@@ -49,13 +49,13 @@ namespace Features.Tests
             // Act
             clienteService.Adicionar(cliente);
 
-            //Assert 
+            // Assert 
             mocker.GetMock<IClienteRepository>().Verify(r => r.Adicionar(cliente), Times.Never);
             mocker.GetMock<IMediator>().Verify(m => m.Publish(It.IsAny<INotification>(), CancellationToken.None), Times.Never);
         }
 
         [Fact(DisplayName = "Buscar Clientes Ativos")]
-        [Trait("Categoria", "Cliente Service Auto Mock Testes")]
+        [Trait("Categoria", "Cliente Service AutoMockFixture Testes")]
         public void ClienteService_ObterTodosAtivos_DeveRetornarApenasClientesAtivos()
         {
             // Arrange 
