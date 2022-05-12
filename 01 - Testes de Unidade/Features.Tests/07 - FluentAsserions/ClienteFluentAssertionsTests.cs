@@ -6,6 +6,7 @@ using MediatR;
 using Moq;
 using Moq.AutoMock;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Features.Tests
 {
@@ -13,10 +14,12 @@ namespace Features.Tests
     public class ClienteFluentAssertionsTests
     {
         private readonly ClienteBogusFixture _clientBogusCollection;
+        private readonly ITestOutputHelper _outputHelper;
 
-        public ClienteFluentAssertionsTests(ClienteBogusFixture clientBogusCollection)
+        public ClienteFluentAssertionsTests(ClienteBogusFixture clientBogusCollection, ITestOutputHelper outputHelper)
         {
             _clientBogusCollection = clientBogusCollection;
+            _outputHelper = outputHelper;
         }
 
         [Fact(DisplayName = "Teste com o Bogus Cliente Valido")]
@@ -50,6 +53,9 @@ namespace Features.Tests
             // Asset
             result.Should().BeFalse();
             cliente.ValidationResult.Errors.Should().HaveCountGreaterThanOrEqualTo(1, "Deve possuir erros de validação");
+
+            _outputHelper.WriteLine($"Foram encontrados {cliente.ValidationResult.Errors.Count} erros nessa validacao");
         }
     }
 }
+
